@@ -1,12 +1,12 @@
 <template>
     <form @submit.prevent="handleSubmit">
     <div class="mb-3">
-        <label for="make" class="form-label">Bedrooms</label>
+        <label for="bedroms" class="form-label">Bedrooms</label>
         <input required type="number" v-model="editable.bedrooms" class="form-control" id="bedrooms" placeholder="bedrooms..."
         name="bedrooms">
     </div>
     <div class="mb-3">
-        <label for="model" class="form-label">bathrooms</label>
+        <label for="bathrooms" class="form-label">bathrooms</label>
         <input required type="number" v-model="editable.bathrooms" class="form-control" id="bathrooms" placeholder="bathrooms..."
         name="bathrooms">
     </div>
@@ -46,9 +46,19 @@
 
 
 <script>
+import { ref } from 'vue';
+import { router } from '../router.js';
 export default {
     setup(){
-        return {}
+
+        const editable = ref({})
+
+        return {
+            editable,
+
+
+
+        }
     }
 }
 </script>

@@ -27,7 +27,8 @@
 
 
 <script>
-import { popScopeId } from 'vue';
+import { computed, onMounted } from 'vue';
+import { AppState } from '../AppState.js';
 import { housesService } from '../services/HousesService';
 import Pop from '../utils/Pop';
 
@@ -41,8 +42,15 @@ export default {
       }
     }
 
+    onMounted(()=>{
+      getHouses()
+    })
 
-    return {}
+    return {
+      account: computed(() => AppState.account),
+      houses: computed(()=> AppState.houses)
+
+    }
   }
 }
 </script>
