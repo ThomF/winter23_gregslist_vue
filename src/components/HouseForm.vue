@@ -48,6 +48,8 @@
 <script>
 import { ref } from 'vue';
 import { router } from '../router.js';
+import { housesService } from '../services/HousesService';
+import Pop from '../utils/Pop';
 export default {
     setup(){
 
@@ -56,7 +58,20 @@ export default {
         return {
             editable,
 
+            async handleSubmit(){
+                try {
+                    const house = editable.value.id
+                        ? await housesService.editHouse(editable.value)
+                        : await housesService.createHouse(editable.value)
 
+                        editable.value = {}
+                        if(house?.id){
+                            router.push({ name: 'House', params:{houseId: house.id}})
+                        }
+                } catch (error) {
+                    Pop.error(error, 'Submitting da house')
+                }
+            }
 
         }
     }
